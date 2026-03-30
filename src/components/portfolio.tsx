@@ -1,27 +1,86 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import type { PortfolioItem } from '@/data/data';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
+const VISIBLE = 3;
+
 const Portfolio: React.FC<{ slides: PortfolioItem[] }> = ({ slides }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  // Jumlah slide yang dikloning di awal & akhir
+  const clone = Math.min(VISIBLE, slides.length);
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => Math.min(prev + 1, slides.length - 3));
-  };
+  // Extended array: [klon akhir] + [semua slide asli] + [klon awal]
+  const extended = [
+    ...slides.slice(-clone),
+    ...slides,
+    ...slides.slice(0, clone),
+  ];
 
-  const prevSlide = () => {
-    setCurrentIndex((prev) => Math.max(prev - 1, 0));
-  };
+  // Mulai dari posisi pertama slide ASLI (setelah klon di awal)
+  const [idx, setIdx] = useState(clone);
+  const [animated, setAnimated] = useState(true);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  // Autoplay: reset timer setiap kali user klik manual
+  const startTimer = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setAnimated(true);
+      setIdx((prev) => prev + 1);
+    }, 4000);
+  }, []);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % Math.max(1, slides.length - 2));
-    }, 4000); // Auto slide every 4 seconds
+    startTimer();
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [startTimer]);
 
-    return () => clearInterval(interval);
-  }, [slides.length]);
+  // Infinite loop: saat memasuki zona klon, setelah animasi selesai
+  // langsung "teleport" (tanpa animasi) ke slide asli yang identik secara visual
+  useEffect(() => {
+    // Melewati slide asli terakhir → masuk klon awal di akhir
+    if (idx >= clone + slides.length) {
+      const t = setTimeout(() => {
+        setAnimated(false);
+        setIdx(clone); // teleport ke slide asli pertama
+      }, 500);
+      return () => clearTimeout(t);
+    }
+    // Melewati slide asli pertama → masuk klon akhir di awal
+    if (idx < clone) {
+      const t = setTimeout(() => {
+        setAnimated(false);
+        setIdx(clone + slides.length - 1); // teleport ke slide asli terakhir
+      }, 500);
+      return () => clearTimeout(t);
+    }
+  }, [idx, clone, slides.length]);
+
+  const goNext = () => {
+    setAnimated(true);
+    setIdx((prev) => prev + 1);
+    startTimer();
+  };
+
+  const goPrev = () => {
+    setAnimated(true);
+    setIdx((prev) => prev - 1);
+    startTimer();
+  };
+
+  const goTo = (i: number) => {
+    setAnimated(true);
+    setIdx(i + clone);
+    startTimer();
+  };
+
+  // Hitung index real untuk highlight dot
+  const realIdx =
+    ((idx - clone) % slides.length + slides.length) % slides.length;
 
   if (slides.length === 0) return null;
+
   return (
     <section id='portfolio' className='py-2 md:py-2'>
       <div className='container mx-auto relative max-w-6xl px-4 mt-28'>
@@ -35,25 +94,27 @@ const Portfolio: React.FC<{ slides: PortfolioItem[] }> = ({ slides }) => {
 
           <div className='relative w-full max-w-6xl mx-auto px-4'>
             <button
-              onClick={prevSlide}
+              onClick={goPrev}
               className='absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-black dark:bg-white shadow-lg text-white dark:text-black p-3 rounded-full hover:bg-base-500 transition-colors'
             >
               <FaChevronLeft />
             </button>
             <button
-              onClick={nextSlide}
+              onClick={goNext}
               className='absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-black dark:bg-white shadow-lg text-white dark:text-black p-3 rounded-full hover:bg-base-500 transition-colors'
             >
               <FaChevronRight />
             </button>
+
             <div className='overflow-hidden rounded-lg'>
               <div
-                className='flex transition-transform duration-500 ease-in-out'
+                className='flex'
                 style={{
-                  transform: `translateX(-${(currentIndex * 100) / 3}%)`,
+                  transform: `translateX(-${(idx * 100) / VISIBLE}%)`,
+                  transition: animated ? 'transform 500ms ease-in-out' : 'none',
                 }}
               >
-                {slides.map((slide, index) => (
+                {extended.map((slide, index) => (
                   <div key={index} className='w-1/3 flex-shrink-0 px-2'>
                     <div className='bg-base-100 dark:bg-base-950 rounded-lg shadow-lg overflow-hidden hover:shadow-xl hover:scale-105 transition-transform duration-300 border border-base-200 dark:border-base-800'>
                       <div className='h-96 overflow-hidden'>
@@ -76,19 +137,18 @@ const Portfolio: React.FC<{ slides: PortfolioItem[] }> = ({ slides }) => {
                 ))}
               </div>
             </div>
+
+            {/* Dots — satu per slide, highlight sesuai posisi real */}
             <div className='flex justify-center mt-6'>
-              {Array.from(
-                { length: Math.max(1, slides.length - 2) },
-                (_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentIndex(index)}
-                    className={`w-3 h-3 rounded-full mx-1 ${
-                      index === currentIndex ? 'bg-primary-600' : 'bg-gray-400'
-                    }`}
-                  />
-                )
-              )}
+              {slides.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => goTo(i)}
+                  className={`w-3 h-3 rounded-full mx-1 transition-colors duration-300 ${
+                    i === realIdx ? 'bg-primary-600' : 'bg-gray-400'
+                  }`}
+                />
+              ))}
             </div>
           </div>
         </div>
