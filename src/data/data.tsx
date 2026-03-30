@@ -189,8 +189,8 @@ const testimonials: Testimonial[] = [
     name: 'Sarah Tan',
     position: 'Product Manager, Finovate',
     content:
-      '"The team delivered exactly what we needed — on time and with outstanding quality. Their attention to detail and communication were top-notch."',
-    image: './public/images/sarah-tan.svg',
+      '"The collaboration was seamless, and the results surpassed our expectations. Their expertise transformed our ideas into a successful product."',
+    image: '/images/sarahtan.svg',
   },
   {
     name: 'John Lee',
@@ -211,12 +211,12 @@ const portfolioItems: PortfolioItem[] = [
   {
     title: 'Todo App',
     category: 'Frontend Development',
-    image: './public/images/portfolio3.svg',
+    image: '/images/portfolio-todo3.svg',
   },
   {
     title: 'Landing Page',
     category: 'Frontend Development',
-    image: './public/images/portfolio2.svg',
+    image: '/images/portfolio-2.svg',
   },
   {
     title: 'E-commerce Website',
