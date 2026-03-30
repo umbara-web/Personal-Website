@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '@/components/ui/Button';
 import { Download } from 'lucide-react';
-import cv from '../../public/CV_Debi Umbara.pdf';
+import cv from '../../public/DebiUmbara_WebDeveloper_CV.pdf';
 // export default function AboutMe() {
 const AboutMe: React.FC = () => {
   return (
@@ -43,14 +43,15 @@ const AboutMe: React.FC = () => {
                 <span className='font-bold text-black dark:text-white'>
                   Debi Umbara
                 </span>
-                , and I specialize in web development using HTML, CSS, JS,
-                TailwindCSS, React, and Next etc. I am a highly motivated and
-                optimistic individual, dedicated to writing clear, concise, and
-                robust code that is effective. I always strive to continuously
-                learn and improve. I enjoy having my perspectives and beliefs
-                challenged, allowing me to see the world from a new perspective.
-                I emphasize core work principles such as punctuality, attention
-                to detail, and clear communication.
+                , and I specialize in web development using HTML, CSS,
+                JavaScript, TailwindCSS, ReactJS, NextJS, ExpressJS etc. I am a
+                highly motivated and optimistic individual, dedicated to writing
+                clear, concise, and robust code that is effective. I always
+                strive to continuously learn and improve. I enjoy having my
+                perspectives and beliefs challenged, allowing me to see the
+                world from a new perspective. I emphasize core work principles
+                such as punctuality, attention to detail, and clear
+                communication.
               </p>
               <p></p>
               <div className='flex justify-center mt-6'>

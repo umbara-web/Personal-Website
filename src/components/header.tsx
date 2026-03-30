@@ -45,17 +45,10 @@ export const Header = () => {
                 className='flex items-center space-x-2 '
               >
                 <img
-                  src='../src/assets/titik.png'
+                  src='../public/images/Logo-2.svg'
                   alt='logo'
-                  width={26}
-                  height={28}
-                />
-                <img
-                  src='../src/assets/koma.png'
-                  alt='logo'
-                  width={26}
-                  height={28}
-                  className='-ml-2'
+                  width={36}
+                  height={38}
                 />
 
                 <div className='text-xl font-bold'>Umbara</div>
