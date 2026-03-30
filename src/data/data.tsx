@@ -216,7 +216,7 @@ const portfolioItems: PortfolioItem[] = [
   {
     title: 'Landing Page',
     category: 'Frontend Development',
-    image: '/images/portfolio-2.svg',
+    image: '/images/portfolio2.svg',
   },
   {
     title: 'E-commerce Website',
