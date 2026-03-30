@@ -45,7 +45,7 @@ export const Header = () => {
                 className='flex items-center space-x-2 '
               >
                 <img
-                  src='../public/images/Logo-2.svg'
+                  src='../images/Logo-2.svg'
                   alt='logo'
                   width={36}
                   height={38}
