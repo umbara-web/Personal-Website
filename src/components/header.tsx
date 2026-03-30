@@ -36,7 +36,7 @@ export const Header = () => {
         className='bg-transparent fixed z-20 w-full border-b border-gray-500 backdrop-blur-3xl'
       >
         <div className='mx-auto max-w-6xl px-4 transition-all duration-300'>
-          <div className='relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4'>
+          <div className='relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-2'>
             {/* Logo */}
             <div className='flex w-full items-center justify-between gap-12 lg:w-auto'>
               <a
@@ -65,7 +65,7 @@ export const Header = () => {
 
               {/* Navigation Menu Dekstop */}
               <div className='hidden lg:block'>
-                <nav className='flex flex-wrap justify-between items-center font-bold'>
+                <nav className='flex flex-wrap justify-center items-center font-bold'>
                   <NavigationMenu />
                 </nav>
               </div>
