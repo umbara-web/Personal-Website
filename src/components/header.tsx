@@ -38,7 +38,7 @@ export const Header = () => {
         <div className='mx-auto max-w-6xl px-4 transition-all duration-300'>
           <div className='relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-2'>
             {/* Logo */}
-            <div className='flex w-full items-center justify-between gap-12 lg:w-auto'>
+            <div className='flex w-full items-center justify-between lg:w-auto'>
               <a
                 href='/'
                 aria-label='home'
@@ -62,13 +62,13 @@ export const Header = () => {
                 <Menu className='in-data-[state=active]:rotate-180 in-data-[state=active]:scale-0 in-data-[state=active]:opacity-0 m-auto size-6 duration-200' />
                 <X className='in-data-[state=active]:rotate-0 in-data-[state=active]:scale-100 in-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200' />
               </button>
+            </div>
 
-              {/* Navigation Menu Dekstop */}
-              <div className='hidden lg:block'>
-                <nav className='flex flex-wrap justify-center items-center font-bold'>
-                  <NavigationMenu />
-                </nav>
-              </div>
+            {/* Navigation Menu Desktop */}
+            <div className='hidden lg:flex lg:flex-1 lg:justify-center'>
+              <nav className='flex items-center font-bold'>
+                <NavigationMenu />
+              </nav>
             </div>
 
             {/* Navigation Menu Mobile */}
