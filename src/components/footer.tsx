@@ -18,12 +18,7 @@ const FooterSection: React.FC = () => {
           aria-label='home'
           className='flex justify-center items-center space-x-2'
         >
-          <img
-            src='../public/images/Logo-2.svg'
-            alt='logo'
-            width={36}
-            height={38}
-          />
+          <img src='../images/Logo-2.svg' alt='logo' width={36} height={38} />
           <span className='text-2xl font-bold'>Umbara</span>
         </Link>
         <nav

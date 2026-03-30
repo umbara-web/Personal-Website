@@ -20,14 +20,14 @@ const AboutMe: React.FC = () => {
             <div className='relative mb-2'>
               <div className='bg-linear-to-b aspect-76/59 relative flex items-center justify-center rounded-2xl from-zinc-300 to-transparent p-px dark:from-zinc-700'>
                 <img
-                  src='/src/assets/foto-aboutme.png'
+                  src='/images/foto-aboutme.png'
                   className='hidden rounded-2xl dark:block'
                   alt='illustration dark'
                   width={300}
                   height={200}
                 />
                 <img
-                  src='/src/assets/foto-aboutme.png'
+                  src='/images/foto-aboutme.png'
                   className='rounded-2xl dark:hidden'
                   alt='illustration light'
                   width={300}

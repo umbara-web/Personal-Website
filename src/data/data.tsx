@@ -183,21 +183,21 @@ const testimonials: Testimonial[] = [
     position: 'Marketing Head at Tech Solutions',
     content:
       '"The collaboration was seamless, and the results surpassed our expectations. Their expertise transformed our ideas into a successful product."',
-    image: '../src/assets/emily-chen.svg',
+    image: '/images/emily-chen.svg',
   },
   {
     name: 'Sarah Tan',
     position: 'Product Manager, Finovate',
     content:
       '"The team delivered exactly what we needed — on time and with outstanding quality. Their attention to detail and communication were top-notch."',
-    image: '../src/assets/sarah-tan.svg',
+    image: './public/images/sarah-tan.svg',
   },
   {
     name: 'John Lee',
     position: 'Creative Director at Innovate Corp',
     content:
       '"Working with this team was a game-changer for our project. They understood our vision and turned it into reality efficiently and effectively."',
-    image: '../src/assets/john-lee.svg',
+    image: '/images/john-lee.svg',
   },
 ];
 
@@ -206,27 +206,27 @@ const portfolioItems: PortfolioItem[] = [
   {
     title: 'Landing Page',
     category: 'Frontend Development',
-    image: '../src/assets/portfolio1.svg',
+    image: '/images/portfolio1.svg',
   },
   {
     title: 'Todo App',
     category: 'Frontend Development',
-    image: '../src/assets/portfolio3.svg',
+    image: './public/images/portfolio3.svg',
   },
   {
     title: 'Landing Page',
     category: 'Frontend Development',
-    image: '../src/assets/portfolio2.svg',
+    image: './public/images/portfolio2.svg',
   },
   {
     title: 'E-commerce Website',
     category: 'Frontend Development',
-    image: '../src/assets/portfolio5.svg',
+    image: '/images/portfolio5.svg',
   },
   {
     title: 'Movie Website',
     category: 'Frontend Development',
-    image: '../src/assets/portfolio4.svg',
+    image: '/images/portfolio4.svg',
   },
 ];
 

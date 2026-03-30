@@ -38,7 +38,7 @@ const HeroSection: React.FC = () => {
             </div>
             <img
               className='-z-10 order-first mx-auto object-cover lg:absolute lg:inset-0 md:size-2/6 lg:inset-y-0 lg:-right-170 lg:-top-42 lg:order-last lg:h-[600px] lg:object-contain dark:mix-blend-lighten dark:invert-0'
-              src='/src/assets/foto-hero.png'
+              src='/images/foto-hero.png'
               alt='Foto'
               height='100'
               width='150'
